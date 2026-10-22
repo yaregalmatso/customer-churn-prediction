@@ -19,7 +19,7 @@ from lightgbm import LGBMClassifier
 
 warnings.filterwarnings("ignore")
 
-PROJECT_PATH = "/content/drive/My Drive/My project"
+PROJECT_PATH = "/My Drive/My project"
 RAW_DATA_PATH = f"{PROJECT_PATH}/data/raw/original_dataset.csv"
 PROCESSED_DATA_DIR = f"{PROJECT_PATH}/data/processed"
 MODELS_DIR = f"{PROJECT_PATH}/models"
