@@ -1,0 +1,6 @@
+Experiment_ID,Model_Name,Parameters,Imbalance_Handling,Decision_Threshold,Test_Accuracy,Test_Recall,Test_ROC_AUC
+EXP-001,Random Forest Baseline,"n_estimators=300, max_depth=10, min_samples_leaf=6",None,0.5,0.8013,0.5187,0.8435
+EXP-002,Logistic Regression Baseline,"C=1.0, max_iter=1000",None,0.5,0.8091,0.5481,0.8476
+EXP-003,XGBoost Candidate,"n_estimators=400, max_depth=10, learning_rate=0.05, scale_pos_weight=2.77",Cost-Sensitive (scale_pos_weight),0.5,0.7736,0.6043,0.8184
+EXP-004,LightGBM Candidate,"n_estimators=400, max_depth=6, learning_rate=0.05",None,0.5,0.7892,0.5267,0.8336
+EXP-005,SMOTE-XGBoost Final,"n_estimators=250, max_depth=4, learning_rate=0.01, subsample=0.6, colsample_bytree=0.8",SMOTE (sampling_strategy=0.6),0.39,0.7679,0.7647,0.8456
