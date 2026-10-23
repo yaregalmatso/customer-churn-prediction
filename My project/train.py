@@ -19,13 +19,18 @@ from lightgbm import LGBMClassifier
 
 warnings.filterwarnings("ignore")
 
-PROJECT_PATH = "/My project"
-RAW_DATA_PATH = f"{PROJECT_PATH}/data/raw/original_dataset.csv"
-PROCESSED_DATA_DIR = f"{PROJECT_PATH}/data/processed"
-MODELS_DIR = f"{PROJECT_PATH}/models"
+# Dynamically determine the base directory of the script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Configure relative paths
+RAW_DATA_PATH = os.path.join(BASE_DIR, 'data', 'raw', 'original_dataset.csv')
+PROCESSED_DATA_DIR = os.path.join(BASE_DIR, 'data', 'processed')
+MODELS_DIR = os.path.join(BASE_DIR, 'models')
 
 os.makedirs(PROCESSED_DATA_DIR, exist_ok=True)
 os.makedirs(MODELS_DIR, exist_ok=True)
+
+print(f"Using relative base directory: {BASE_DIR}")
 
 # 1. Load Data
 print("Loading dataset...")
