@@ -20,7 +20,8 @@ def load_model_pipeline():
     if os.path.exists(MODEL_PATH):
         return joblib.load(MODEL_PATH)
     else:
-        st.error(f"Model pipeline not found at {MODEL_PATH}. Please verify your Google Drive mount.")
+        model_path = os.path.join(os.path.dirname(__file__), "models", "final_model_pipeline.joblib")
+        pipeline = joblib.load(model_path)
         return None
 
 loaded_pipeline = load_model_pipeline()
