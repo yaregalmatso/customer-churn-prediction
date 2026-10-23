@@ -1,3 +1,4 @@
+%%writefile app.py
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -10,11 +11,29 @@ st.set_page_config(
     layout="wide"
 )
 
-# Dynamically calculate the directory of the currently executing app.py file
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Dynamic and robust model path resolution for Streamlit Cloud deployment
+def resolve_model_path():
+    # List of possible relative path structures on Streamlit Cloud and Local testing
+    possible_paths = [
+        os.path.join(os.getcwd(), 'models', 'final_model_pipeline.joblib'),
+        os.path.join(os.getcwd(), 'My project', 'models', 'final_model_pipeline.joblib'),
+        os.path.join(os.getcwd(), 'My project', 'app', 'models', 'final_model_pipeline.joblib'),
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'final_model_pipeline.joblib') if '__file__' in globals() else '',
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'models', 'final_model_pipeline.joblib') if '__file__' in globals() else ''
+    ]
+    
+    for path in possible_paths:
+        if path and os.path.exists(path):
+            return path
+    
+    # Fallback default if not found yet
+    try:
+        base = os.path.dirname(os.path.abspath(__file__))
+    except NameError:
+        base = os.getcwd()
+    return os.path.join(base, 'models', 'final_model_pipeline.joblib')
 
-# Configure relative paths based on script location
-MODEL_PATH = os.path.join(BASE_DIR, 'models', 'final_model_pipeline.joblib')
+MODEL_PATH = resolve_model_path()
 OPTIMAL_THRESHOLD = 0.39
 
 @st.cache_resource
@@ -22,7 +41,7 @@ def load_model_pipeline():
     if os.path.exists(MODEL_PATH):
         return joblib.load(MODEL_PATH)
     else:
-        st.error(f"Model pipeline not found at relative path: {MODEL_PATH}. Please make sure you have run train.py first or committed the model file to your GitHub repository.")
+        st.error(f"Model pipeline not found. We searched several paths, current resolved path: `{MODEL_PATH}`. Please verify your `final_model_pipeline.joblib` file is committed to your GitHub repository inside a `models/` directory.")
         return None
 
 loaded_pipeline = load_model_pipeline()
