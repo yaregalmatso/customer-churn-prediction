@@ -17,13 +17,15 @@ OPTIMAL_THRESHOLD = 0.39
 
 @st.cache_resource
 def load_model_pipeline():
-    if os.path.exists(MODEL_PATH):
-        return joblib.load(MODEL_PATH)
+    # Construct the relative path from app.py (inside 'app/') up to 'models/'
+    model_path = os.path.join(os.path.dirname(__file__), "..", "models", "final_model_pipeline.joblib")
+    
+    if os.path.exists(model_path):
+        return joblib.load(model_path)
     else:
-        model_path = os.path.join(os.path.dirname(__file__), "..", "models", "final_model_pipeline.joblib")
-        pipeline = joblib.load(model_path)
-        return None
+        raise FileNotFoundError(f"Model file not found at: {model_path}")
 
+# Load the pipeline
 loaded_pipeline = load_model_pipeline()
 
 st.title("📊 Customer Churn Prediction Dashboard")
