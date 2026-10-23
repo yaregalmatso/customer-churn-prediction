@@ -11,8 +11,10 @@ st.set_page_config(
     layout="wide"
 )
 
-# Dynamically determine paths relative to the location of app.py
+# Dynamically calculate the directory of the currently executing app.py file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Configure relative paths based on script location
 MODEL_PATH = os.path.join(BASE_DIR, 'models', 'final_model_pipeline.joblib')
 OPTIMAL_THRESHOLD = 0.39
 
@@ -21,7 +23,7 @@ def load_model_pipeline():
     if os.path.exists(MODEL_PATH):
         return joblib.load(MODEL_PATH)
     else:
-        st.error(f"Model pipeline not found at relative path: {MODEL_PATH}. Please make sure you have run train.py first.")
+        st.error(f"Model pipeline not found at relative path: {MODEL_PATH}. Please make sure you have run train.py first or committed the model file to your GitHub repository.")
         return None
 
 loaded_pipeline = load_model_pipeline()
