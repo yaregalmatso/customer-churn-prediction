@@ -1,4 +1,4 @@
-# Isolated Streamlit application restoring all detailed features and rich visualization from the former dashboard
+%%writefile app.py
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -30,11 +30,11 @@ loaded_pipeline = load_model_pipeline()
 
 st.title("📊 Customer Churn Prediction Dashboard")
 st.markdown("""
-This app uses an optimized **SMOTE-XGBoost Pipeline** to predict customer churn risk.
-Adjust customer demographics and services in the sidebar to run interactive real-time inference.
+This app uses a custom-threshold **SMOTE-XGBoost Pipeline** to predict customer churn risk.
+Adjust customer demographics and services in the sidebar to run interactive inference.
 """)
 
-# Sidebar input fields - Rich Feature Set
+# Sidebar input fields
 st.sidebar.header("👤 Customer Profile")
 gender = st.sidebar.selectbox("Gender", ["Male", "Female"])
 SeniorCitizen = st.sidebar.selectbox("Senior Citizen (65+)", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
@@ -65,7 +65,7 @@ PaymentMethod = st.sidebar.selectbox("Payment Method", [
 MonthlyCharges = st.sidebar.slider("Monthly Charges ($)", min_value=18.0, max_value=120.0, value=70.0)
 TotalCharges = st.sidebar.number_input("Total Charges ($)", min_value=0.0, value=float(tenure * MonthlyCharges))
 
-# Run Inference
+# Submit button
 if st.sidebar.button("Predict Churn Risk", type="primary"):
     if loaded_pipeline is not None:
         # Construct raw input DataFrame
@@ -96,6 +96,7 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         # Replicate dynamic Feature Engineering pipeline
         input_df["ValueRatio"] = input_df["TotalCharges"] / (input_df["tenure"] + 1)
         input_df["TenureGroup"] = pd.cut(input_df["tenure"], bins=[0,12,24,36,72], labels=["New","Short","Medium","Long"])
+        # Handle edge-case categorical bins if tenure was 0
         input_df["TenureGroup"] = input_df["TenureGroup"].astype(object).fillna("New")
         input_df['Monthly_to_Total_Ratio'] = input_df['MonthlyCharges'] / (input_df['TotalCharges'] + 1)
         input_df['Tenure_Charges_Interaction'] = input_df['tenure'] * input_df['MonthlyCharges']
@@ -118,12 +119,12 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
             else:
                 st.success("✅ LOW RISK: Customer is likely to stay retained.")
 
-        # Strategic Key Takeaways
+        # Highlighting Risk Profiles
         st.subheader("ℹ️ Strategic Key Takeaways")
         if Contract == "Month-to-month" and PaymentMethod == "Electronic check":
-            st.warning("⚠️ This profile exhibits extremely high-risk properties (Month-to-month contract & Electronic check payments). Offer immediate incentives to migrate to automated payment or auto-renewal.")
+            st.warning("⚠️ This profile exhibits high-risk properties (Month-to-month contract & Electronic check payments). Offer incentives to migrate to a long-term contract or register for automatic payment methods.")
         else:
-            st.info("💡 Customer features indicate stable subscription behavior. Maintain regular engagement with relevant value-added services.")
+            st.info("💡 Customer features indicate stable subscription behavior. Keep engaging them with relevant upgrade offers.")
     else:
         st.error("Unable to run prediction. The pipeline model was not loaded.")
 else:
