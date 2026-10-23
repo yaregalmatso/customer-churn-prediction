@@ -20,7 +20,7 @@ def load_model_pipeline():
     if os.path.exists(MODEL_PATH):
         return joblib.load(MODEL_PATH)
     else:
-        model_path = os.path.join(os.path.dirname(__file__), "models", "final_model_pipeline.joblib")
+        model_path = os.path.join(os.path.dirname(__file__), "..", "models", "final_model_pipeline.joblib")
         pipeline = joblib.load(model_path)
         return None
 
