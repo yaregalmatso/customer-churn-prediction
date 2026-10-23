@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # Define paths dynamically
-MODEL_PATH = '/My project/models/final_model_pipeline.joblib'
+MODEL_PATH = 'My project/models/final_model_pipeline.joblib'
 OPTIMAL_THRESHOLD = 0.39
 
 @st.cache_resource
