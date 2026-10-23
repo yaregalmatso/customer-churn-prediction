@@ -11,21 +11,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# Define paths dynamically
-MODEL_PATH = '/My project/models/final_model_pipeline.joblib'  
+# Dynamically determine paths relative to the location of app.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, 'models', 'final_model_pipeline.joblib')
 OPTIMAL_THRESHOLD = 0.39
 
 @st.cache_resource
 def load_model_pipeline():
-    # Construct the relative path from app.py (inside 'app/') up to 'models/'
-    model_path = os.path.join(os.path.dirname(__file__), "..", "models", "final_model_pipeline.joblib")
-    
-    if os.path.exists(model_path):
-        return joblib.load(model_path)
+    if os.path.exists(MODEL_PATH):
+        return joblib.load(MODEL_PATH)
     else:
-        raise FileNotFoundError(f"Model file not found at: {model_path}")
+        st.error(f"Model pipeline not found at relative path: {MODEL_PATH}. Please make sure you have run train.py first.")
+        return None
 
-# Load the pipeline
 loaded_pipeline = load_model_pipeline()
 
 st.title("📊 Customer Churn Prediction Dashboard")
