@@ -1,9 +1,14 @@
-
+%%writefile app.py
 import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
 import os
+
+# CRITICAL: Import imblearn explicitly so Python's pickle find_class 
+# can successfully resolve and deserialize the SMOTE pipeline classes.
+import imblearn
+from imblearn.pipeline import Pipeline as ImbPipeline
 
 st.set_page_config(
     page_title="Telecom Customer Churn Predictor",
@@ -21,11 +26,11 @@ def resolve_model_path():
         os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'final_model_pipeline.joblib') if '__file__' in globals() else '',
         os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'models', 'final_model_pipeline.joblib') if '__file__' in globals() else ''
     ]
-    
+
     for path in possible_paths:
         if path and os.path.exists(path):
             return path
-    
+
     # Fallback default if not found yet
     try:
         base = os.path.dirname(os.path.abspath(__file__))
@@ -39,7 +44,11 @@ OPTIMAL_THRESHOLD = 0.39
 @st.cache_resource
 def load_model_pipeline():
     if os.path.exists(MODEL_PATH):
-        return joblib.load(MODEL_PATH)
+        try:
+            return joblib.load(MODEL_PATH)
+        except Exception as e:
+            st.error(f"Error loading the model pipeline file: {str(e)}. This can happen if there is a library version mismatch between Google Colab and Streamlit Cloud.")
+            return None
     else:
         st.error(f"Model pipeline not found. We searched several paths, current resolved path: `{MODEL_PATH}`. Please verify your `final_model_pipeline.joblib` file is committed to your GitHub repository inside a `models/` directory.")
         return None
