@@ -207,10 +207,12 @@ To explore how the model responds, test these extreme profiles in the left sideb
    * **Internet Service:** DSL or No internet service
    * **Online Security / Tech Support:** Yes
    * **Tenure:** 60+ months
-```
+
 
 ## 📊 Features & Takeaways
 
 - **SMOTE Resampling:** Tackles training target class imbalance ratio (from 26% to balanced status).  
 - **Optimal Thresholding:** Fine-tuned probability decision threshold configured at `0.39` to yield maximum Recall (\~76.47%) and high ROC-AUC (\~84.56%).  
 - **Real-time Inference:** Input demographics (tenure, charges, payment methods) to predict high-risk classifications and generate immediate retention actions.
+
+```
