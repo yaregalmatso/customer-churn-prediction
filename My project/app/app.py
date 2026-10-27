@@ -122,6 +122,12 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
                 st.error("🚨 HIGH RISK: Customer is likely to churn!")
             else:
                 st.success("✅ LOW RISK: Customer is likely to stay retained.")
+        #Strategic Key Takeaways
+        st.subheader("ℹ️ Strategic Key Takeaways")
+        if Contract == "Month-to-month" and PaymentMethod == "Electronic check":
+            st.warning("⚠️ This profile exhibits extremely high-risk properties (Month-to-month contract & Electronic check payments). Offer immediate incentives to migrate to automated payment or auto-renewal.")
+        else:
+            st.info("💡 Customer features indicate stable subscription behavior. Maintain regular engagement with relevant value-added services.")
     else:
         st.error("Unable to run prediction. The pipeline model was not loaded.")
 else:
