@@ -135,7 +135,7 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         elif 0.25 <= churn_probability < 0.39:
             st.info("🟢 **Moderate Churn Risk:** Stable customer, but under-utilizing services. Propose loyalty bonuses or product updates.")
         else:
-            st.success("✅ **Stable / Low Churn Risk:** Highly retained segment. Keep engaging with standard campaigns.")
+            st.success("✅ **Low Churn Risk:** Highly retained segment. Keep engaging with standard campaigns.")
     else:
         st.error("Unable to run prediction. The pipeline model was not loaded.")
 else:
