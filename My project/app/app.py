@@ -125,23 +125,17 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         #Strategic Key Takeaways
         st.subheader("ℹ️ Strategic Key Takeaways")
         if Contract == "Month-to-month" and PaymentMethod == "Electronic check" and tenure <=5:
-            st.error("🚨 **Critical Churn Risk**")
-            st.write("**Strategic Action Plan:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
+            st.error("🚨 **Critical Churn Risk:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
         elif 0.65 <= churn_probability < 0.80:
-            st.warning("⚠️ **High Churn Risk**")
-            st.write("**Strategic Action Plan:** Offer long-term contract migrations or value-added services (e.g., Tech Support, Online Security) to secure retention.")
+            st.warning("⚠️ **High Churn Risk:** Offer long-term contract migrations or value-added services (e.g., Tech Support, Online Security) to secure retention.")
         elif 0.50 <= churn_probability < 0.65:
-            st.warning("🟡 **Moderate-High Churn Risk**")
-            st.write("**Strategic Action Plan:** Launch survey inquiries or offer feature upgrade trials to increase engagement.")
+            st.warning("🟡 **Moderate-High Churn Risk:** Launch survey inquiries or offer feature upgrade trials to increase engagement.")
         elif 0.39 <=  churn_probability < 0.50:
-            st.info("🔵 **Elevated Churn Risk**")
-            st.write("**Strategic Action Plan:** System threshold crossed. Engage with automated payment (Auto-Pay) setups to ease billing friction.")
+            st.info("🔵 **Elevated Churn Risk:** System threshold crossed. Engage with automated payment (Auto-Pay) setups to ease billing friction.")
         elif 0.25 <= churn_probability < 0.39:
-            st.info("🟢 **Moderate Churn Risk**")
-            st.write("**Strategic Action Plan:** Stable customer, but under-utilizing services. Propose loyalty bonuses or product updates.")
+            st.info("🟢 **Moderate Churn Risk:** Stable customer, but under-utilizing services. Propose loyalty bonuses or product updates.")
         else:
-            st.success("✅ **Stable / Low Churn Risk**")
-            st.info("**Strategic Action Plan:** Highly retained segment. Keep engaging with standard campaigns.")
+            st.success("✅ **Stable / Low Churn Risk:** Highly retained segment. Keep engaging with standard campaigns.")
     else:
         st.error("Unable to run prediction. The pipeline model was not loaded.")
 else:
