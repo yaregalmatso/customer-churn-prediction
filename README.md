@@ -101,6 +101,6 @@ To ensure our model's predictions are interpretable and actionable for customer 
 
 ## 🤝 Contacts & Authors
 This project was designed and developed by a dedicated AI engineer:
-* **Yaregal Matso Mawura**
+* **Yaregal Matso **
 
 ```
