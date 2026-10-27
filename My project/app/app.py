@@ -126,7 +126,10 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         st.subheader("ℹ️ Strategic Key Takeaways")
         if Contract == "Month-to-month" and PaymentMethod == "Electronic check" and tenure <=5:
             st.error("🚨 **Critical Churn Risk**")
-            st.write("**Action Plan:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
+            st.write("**Strategic Action Plan:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
+        elif 0.65 <= churn_probability < 0.80:
+            st.warning("⚠️ **High Churn Risk**")
+            st.write("**Strategic Action Plan:** Offer long-term contract migrations or value-added services (e.g., Tech Support, Online Security) to secure retention.")
         elif churn_probability >= OPTIMAL_THRESHOLD:
             st.warning("⚠️ This profile exhibits high-risk properties. Please offer some incentives to migrate to automated payment or auto-renewal.")
         else:
