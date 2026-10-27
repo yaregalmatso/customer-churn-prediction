@@ -124,8 +124,10 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
                 st.success("✅ LOW RISK: Customer is likely to stay retained.")
         #Strategic Key Takeaways
         st.subheader("ℹ️ Strategic Key Takeaways")
-        if Contract == "Month-to-month" and PaymentMethod == "Electronic check":
-            st.warning("⚠️ This profile exhibits extremely high-risk properties (Month-to-month contract & Electronic check payments). Offer immediate incentives to migrate to automated payment or auto-renewal.")
+        if Contract == "Month-to-month" and PaymentMethod == "Electronic check" and tenure <=5:
+            st.warning("⚠️ This profile exhibits extremely high-risk properties. Please offer immediate incentives to migrate to automated payment or auto-renewal.")
+        elif churn_probability >= OPTIMAL_THRESHOLD:
+            st.warning("⚠️ This profile exhibits high-risk properties. Please offer immediate incentives to migrate to automated payment or auto-renewal.")
         else:
             st.info("💡 Customer features indicate stable subscription behavior. Maintain regular engagement with relevant value-added services.")
     else:
