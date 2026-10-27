@@ -118,12 +118,10 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
             st.metric(label="Churn Probability", value=f"{churn_probability * 100:.2f}%")
 
         with col2:
-            if churn_probability >= 0.80:
-                st.error("st.error("🚨 **Critical Churn Risk:**")
-            elif 0.65 <= churn_probability < 0.80:
-                st.warning("⚠️ **High Churn Risk:**)
+            if is_churn == 1:
+                st.error("🚨 Customer is likely to churn!")
             else:
-                st.success("✅ LOW RISK: Customer is likely to stay retained.")
+                st.success("✅ Customer is likely to stay retained.")
         #Strategic Key Takeaways
         st.subheader("ℹ️ Strategic Key Takeaways")
         if Contract == "Month-to-month" and PaymentMethod == "Electronic check" and tenure <=5:
