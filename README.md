@@ -20,15 +20,65 @@ An end-to-end, production-grade machine learning system designed to predict cust
 ## 🪐 Project Architecture & Workflow
 
 ```
- ├── data/
- │    ├── raw/              <- Original Telco dataset
- │    └── processed/        <- Cleaned & engineered prepared_dataset.csv
- ├── models/
- │    ├── final_model_pipeline.joblib   <- Full Preprocessing + SMOTE + XGBoost pipeline
- │    └── model_metadata.json           <- Evaluation metrics and custom thresholds
- ├── app.py                 <- Interactive Streamlit dashboard application
- ├── train.py               <- Fully automated data pipeline and model retraining script
- └── requirements.txt       <- Python dependencies mapped for stable deployment
+ ├── app/
+
+│   └── app.py                  \# Interactive Streamlit Web Application
+
+├── data/
+
+│   ├── raw/
+
+│   │   └── original\_dataset.csv \# Raw Kaggle Telco Churn Dataset
+
+│   └── processed/
+
+│       └── prepared\_dataset.csv \# Preprocessed and Cleaned Dataset
+
+├── models/
+
+│   ├──baseline\_pipeline.joblib    \#trained Logistic Regression & Random Forest models
+
+│   ├──candidate\_pipeline.joblib  \#trained LightGBM & XGBoost models
+
+│   ├── final\_model\_pipeline.joblib \# Trained SMOTE-XGBoost Imblearn Pipeline
+
+│   └── model\_metadata.json      \# Evaluation metrics and schema thresholds
+
+├── outputs/
+
+│   ├── figures/
+
+│   ├── Amounts of churn & retain datasets.png
+
+│   ├── clean\_Dashboard.png
+
+│   ├──Comparison of ROC-AUC Curves Across All Models.png
+
+│   ├──correlations of numerical features.png
+
+│   ├──HIgh\_Risk\_Dashboard.png
+
+│   ├──Low\_Risk\_Dashboard.png
+
+│   ├──monthly charge density by churn.png
+
+│   ├──Overall comparisions of models.png
+
+│   └── SHAP Explainability Analysis.png
+
+│   ├── report/
+
+│   ├── model\_evaluation\_report.csv \# Final Performance Metrics report
+
+│   └── experiment\_log.csv       \# Experiment iteration records
+
+├──Customer Churn Prediction.ipynb  \#root code&nbsp;
+
+├── train.py                    \# Unified execution script for training the pipeline
+
+├── requirements.txt            \# Python dependencies configuration
+
+└── README.md                   \# Installation and usage instructions
 ```
 
 ### 🔄 The End-to-End Pipeline
