@@ -118,18 +118,17 @@ This  Machine Learning pipeline and interactive Streamlit web application design
 
 ---
 
-## ⚙️ Installation & Setup
-
-**Prerequisites&nbsp;**
-
-* &nbsp;&nbsp;Python 3.11 or higher installed
-
-
 # 📖 Local User Guide: Telecom Customer Churn Prediction Dashboard
 
 Welcome to the **Telecom Customer Churn Prediction Dashboard**! This interactive web application is designed for customer-retention teams, marketing analysts, and managers to proactively evaluate customer churn risks and receive dynamic, strategic retention suggestions.
 
 Since this application runs entirely on your local machine, your data remains secure, private, and offline.
+
+## ⚙️ Installation & Setup
+
+**Prerequisites&nbsp;**
+
+* &nbsp;&nbsp;Python 3.11 or higher installed
 
 ---
 
