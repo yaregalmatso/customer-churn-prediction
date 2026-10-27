@@ -1,0 +1,55 @@
+{
+    "project_name": "Customer Churn Prediction",
+    "domain": "Retail / E-commerce",
+    "optimal_decision_threshold": 0.39000000000000007,
+    "models_metadata": {
+        "baseline_logistic_regression": {
+            "file_name": "baseline_pipeline.joblib",
+            "accuracy": 0.8091,
+            "recall": 0.5481,
+            "roc_auc": 0.8476
+        },
+        "candidate_lightgbm": {
+            "file_name": "candidate_pipeline.joblib",
+            "accuracy": 0.7892,
+            "recall": 0.5267,
+            "roc_auc": 0.8336
+        },
+        "final_smote_xgboost": {
+            "file_name": "final_model_pipeline.joblib",
+            "accuracy": 0.7679205110007097,
+            "recall": 0.7647058823529411,
+            "roc_auc": 0.8456366736417887
+        }
+    },
+    "features": {
+        "numerical_columns": [
+            "SeniorCitizen",
+            "tenure",
+            "MonthlyCharges",
+            "TotalCharges",
+            "ValueRatio",
+            "Monthly_to_Total_Ratio",
+            "Tenure_Charges_Interaction",
+            "Total_Charges_to_Monthly_Ratio"
+        ],
+        "categorical_columns": [
+            "gender",
+            "Partner",
+            "Dependents",
+            "PhoneService",
+            "MultipleLines",
+            "InternetService",
+            "OnlineSecurity",
+            "OnlineBackup",
+            "DeviceProtection",
+            "TechSupport",
+            "StreamingTV",
+            "StreamingMovies",
+            "Contract",
+            "PaperlessBilling",
+            "PaymentMethod",
+            "TenureGroup"
+        ]
+    }
+}
