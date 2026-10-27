@@ -125,7 +125,8 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         #Strategic Key Takeaways
         st.subheader("ℹ️ Strategic Key Takeaways")
         if Contract == "Month-to-month" and PaymentMethod == "Electronic check" and tenure <=5:
-            st.danger("⚠️ This profile exhibits extremely high-risk properties. Please offer immediate incentives to migrate to automated payment or auto-renewal.")
+            st.error("🚨 **Critical Churn Risk**")
+            st.write("**Action Plan:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
         elif churn_probability >= OPTIMAL_THRESHOLD:
             st.warning("⚠️ This profile exhibits high-risk properties. Please offer some incentives to migrate to automated payment or auto-renewal.")
         else:
