@@ -1,8 +1,5 @@
-imbalanced-learn
-joblib
-streamlit
 scikit-learn==1.6.1
 xgboost==3.4.1
 joblib==1.6.0
-pandas==2.2.3
-numpy
+imbalanced-learn==0.14.2
+streamlit
