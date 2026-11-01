@@ -125,17 +125,17 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         #Strategic Key Takeaways
         st.subheader("ℹ️ Strategic Key Takeaways")
         if churn_probability>=0.80:
-            st.error("🚨 Customer is at **Critical Churn Risk:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
+            st.error("🚨 The Customer is at **Critical Churn Risk:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
         elif 0.65 <= churn_probability < 0.80:
-            st.warning("⚠️ Customer is at **High Churn Risk:** Offer long-term contract migrations or value-added services (e.g., Tech Support, Online Security) to secure retention.")
+            st.warning("⚠️ The Customer is at **High Churn Risk:** Offer long-term contract migrations or value-added services (e.g., Tech Support, Online Security) to secure retention.")
         elif 0.50 <= churn_probability < 0.65:
-            st.warning("🟡 Customer is at **Moderate-High Churn Risk:** Launch survey inquiries or offer feature upgrade trials to increase engagement.")
+            st.warning("🟡 The Customer is at **Moderate-High Churn Risk:** Launch survey inquiries or offer feature upgrade trials to increase engagement.")
         elif 0.39 <=  churn_probability < 0.50:
-            st.info("🔵 Customer is at **Elevated Churn Risk:** System threshold crossed. Engage with automated payment (Auto-Pay) setups to ease billing friction.")
+            st.info("🔵 The Customer is at **Elevated Churn Risk:** System threshold crossed. Engage with automated payment (Auto-Pay) setups to ease billing friction.")
         elif 0.25 <= churn_probability < 0.39:
-            st.info("🟢 Customer is at **Moderate Churn Risk:** Stable customer, but under-utilizing services. Propose loyalty bonuses or product updates.")
+            st.info("🟢 The Customer is at **Moderate Churn Risk:** Stable customer, but under-utilizing services. Propose loyalty bonuses or product updates.")
         else:
-            st.success("✅ Customer is at **Low Churn Risk:** Highly retained segment. Keep engaging with standard campaigns.")
+            st.success("✅ The Customer is at **Low Churn Risk:** Highly retained segment. Keep engaging with standard campaigns.")
     else:
         st.error("Unable to run prediction. The pipeline model was not loaded.")
 else:
