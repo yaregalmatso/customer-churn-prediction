@@ -127,7 +127,7 @@ if st.sidebar.button("Predict Churn Risk", type="primary"):
         if churn_probability>=0.80:
             st.error("🚨 The Customer is at **Critical Churn Risk:** Immediate intervention requested. Trigger direct discount vouchers or escalate manually to premium customer support.")
         elif 0.65 <= churn_probability < 0.80:
-            st.warning("⚠️ The Customer is at **High Churn Risk:** Please offer long-term contract migrations or value-added services like Tech Support & Online Securityto secure retention.")
+            st.warning("⚠️ The Customer is at **High Churn Risk:** Please offer long-term contract migrations or value-added services like Tech Support & Online Security to secure retention.")
         elif 0.50 <= churn_probability < 0.65:
             st.warning("🟡 The Customer is at **Moderate-High Churn Risk:** Launch survey inquiries or offer feature upgrade trials to increase engagement.")
         elif 0.39 <=  churn_probability < 0.50:
